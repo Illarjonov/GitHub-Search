@@ -7,9 +7,11 @@ import {About} from './pages/About';
 import {Profile} from './pages/Profile';
 import {Alert} from './components/Alert'
 import {AlertState} from './context/alert/alertState'
+import {GithubState} from './context/github/githubState'
 
 function App() {
   return (
+  <GithubState>
     <AlertState>
         <div>
             <Navbar/>
@@ -22,7 +24,8 @@ function App() {
             </Routes>
         </div>
       </div>
-  </AlertState>
+    </AlertState>
+ </GithubState>
   );
 }
 
