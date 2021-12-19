@@ -1,22 +1,24 @@
 import React, {useReducer} from 'react'
-import axios from 'axios';
+import axios from 'axios'
 import {GithubContext} from './githubContext'
 import {githubReducer} from './githubReducer'
 import {CLEAR_USERS, GET_REPOS, GET_USER, SEARCH_USERS, SET_LOADING} from '../types'
 
-const CLIENT_ID = (process.env.REACT_APP_CLIENT_ID)
-const CLIENT_SECRET = (process.env.REACT_APP_CLIENT_SECRET)
-//в случае комерческой разработки из NODE.JS
 
-const withCreds = url =>{
-    return `${url}cliend_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
+const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
+
+const withCreds = url => {
+  return `${url}client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
 }
-export const GithubState = ( {children} ) => {
-  const initialState ={
+
+
+export const GithubState = ({children}) => {
+  const initialState = {
     user: {},
-    users:[],
+    users: [],
     loading: false,
-    repos:[]
+    repos: []
   }
 
   const [state, dispatch] = useReducer(githubReducer, initialState)
@@ -34,11 +36,11 @@ export const GithubState = ( {children} ) => {
     })
   }
 
-  const getUser = async name =>{
+  const getUser = async login => {
     setLoading()
 
     const response = await axios.get(
-      withCreds(`https://api.github.com/users/${name}?`)
+      withCreds(`https://api.github.com/users/${login}?`)
     )
 
     dispatch({
@@ -47,13 +49,13 @@ export const GithubState = ( {children} ) => {
     })
   }
 
-  const getRepos = async name =>{
+  const getRepos = async login => {
     setLoading()
 
     const response = await axios.get(
-      withCreds(`https://api.github.com/users/${name}/repos?per_page=5&`)
+      withCreds(`https://api.github.com/users/${login}/repos?per_page=5&`)
     )
-    
+
     dispatch({
       type: GET_REPOS,
       payload: response.data
@@ -65,14 +67,13 @@ export const GithubState = ( {children} ) => {
   const setLoading = () => dispatch({type: SET_LOADING})
 
   const {user, users, repos, loading} = state
- //всему приложению доступно value
-  return(
-    <GithubContext.Provider value = {{
-      search, getUser, getRepos, clearUsers, setLoading,
+
+  return (
+    <GithubContext.Provider value={{
+      setLoading, search, getUser, getRepos, clearUsers,
       user, users, repos, loading
     }}>
       {children}
     </GithubContext.Provider>
-
   )
 }
