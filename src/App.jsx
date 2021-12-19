@@ -9,7 +9,7 @@ import {Alert} from './components/Alert'
 import {AlertState} from './context/alert/alertState'
 import {GithubState} from './context/github/githubState'
 
-function App() {
+function App({match}) {
   return (
   <GithubState>
     <AlertState>
@@ -20,7 +20,7 @@ function App() {
             <Routes>
               <Route path = "/"  element = {<Home/>}/>
               <Route path = "/about" element = {<About/>}/>
-              <Route path = "/profile/:id" element = {<Profile/>}/>
+              <Route path = "/profile/:id" element = {<Profile />}/>
             </Routes>
         </div>
       </div>

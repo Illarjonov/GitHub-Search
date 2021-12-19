@@ -1,13 +1,12 @@
 import React, {useContext, useEffect, Fragment} from 'react';
 import {GithubContext} from '../context/github/githubContext'
 import {Loader} from '../components/loader/loader'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import { useParams } from "react-router-dom";
 
 export const Profile = ({match}) => {
   const {getUser, getRepos, loading, user, /*repos*/} = useContext(GithubContext)
-  const params = useParams();
-  const {urlName} = params.name
+  const {urlName} = useParams()
 //effect, input
 
   useEffect( ()  =>{
@@ -22,14 +21,14 @@ if (loading){
 const {
   name, company, avatar_url,
   location, bio, blog,
-  login, html_url, followers,
-  following, public_repos,
+  login, html_url, followers_url,
+  following_url, repos_url,
   public_gists
 } = user
 
   return(
     <Fragment>
-        <Link to = "/" className = "btn btn-link">На главную</Link>
+        <NavLink to = "/" className = "btn btn-link">На главную</NavLink>
         <div className = "card mb-4">
           <div className = "card-body">
             <div className = "row">
@@ -42,17 +41,7 @@ const {
                   {location && <p> Расположение: {location}</p>}
               </div>
               <div className = "col">
-                { bio && <Fragment>
-                  <h3>BIO</h3>
-                  <p> {bio} </p>
-                  </Fragment>
-                }
-                  <a
-                    href ={html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-dark"
-                    >  Открыть профиль </a>
+
                   <ul>
                     { login && <li>
                         <strong> UserName:</strong>{login}
