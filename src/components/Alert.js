@@ -10,9 +10,13 @@ export const Alert = () => {
       className={`alert alert-${alert.type || 'secondary'} alert-dismissible`}
       role="alert"
     >
-      {alert.text}
+
+     {alert.text}
+
       <button type="button" className="close" aria-label="close" onClick ={hide}>
+
         <span aria-hidden="true">&times;</span>
+
       </button>
     </div>
   )

@@ -8,12 +8,14 @@ export const Repos = ({repos, login}) => (
           className = "btn btn-secondary"
           onClick = {() => {
             window.open(`https://github.com/${login}/${repo.name}`)}}>
+
               <p> {repo.name} </p>
+
           </h5>
       </div>
   </div>
-    )
-  )
+                      )
+                )
     }
   </React.Fragment>
 )

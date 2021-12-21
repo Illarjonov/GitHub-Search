@@ -9,10 +9,9 @@ import {Repos} from '../components/repos'
 
 export const Profile = () => {
   const {getUser, getRepos, loading, user, repos} = useContext(GithubContext)
-  const { id } = useParams()
+  const { id } = useParams() //match.params.id
 
 //effect, input
-
   useEffect( ()  => {
     getUser(id)
     getRepos(id)
@@ -29,6 +28,7 @@ const {
   blog, company,
   followers, following, public_repos, public_gists
 } = user
+//зактдываем параметры пришедшие с сервера
 
   return(
     <Fragment>
@@ -41,6 +41,7 @@ const {
                        src = {avatar_url}
                        alt = {login}
                        style={{width: '150px'}}/>
+
                        <h1>@{login}</h1>
                        <h6>{name}</h6>
                        {location && <p>Местоположение: {location}</p>}
@@ -66,6 +67,7 @@ const {
                        <strong>Website: </strong> {blog}
                      </li>}
                  </ul>
+
              <div className="badge badge-primary text-secondary">Подписчики: {followers}</div>
              <div className="badge badge-success text-secondary">Подписан: {following}</div>
              <div className="badge badge-info text-secondary">Репозитории: {public_repos}</div>

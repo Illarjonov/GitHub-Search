@@ -4,18 +4,19 @@ import {GithubContext} from '../context/github/githubContext'
 
 export const Search = () => {
 
-  const [value, setValue] = useState('')
-  const alert = useContext(AlertContext)
-  const github = useContext(GithubContext)
+//hooks
+    const [value, setValue] = useState('')
+    const alert = useContext(AlertContext)
+    const github = useContext(GithubContext) //передает через провайдер все нужное
 
   const onSubmit = event => {
     if (event.key !== 'Enter') {
       return
     }
 
-        github.clearUsers()
+  github.clearUsers() //зачищает после энтера
 
-    if (value.trim()) {
+    if (value.trim()) { //убирает пробелы
             alert.hide()
             github.search(value.trim())
     } else {
