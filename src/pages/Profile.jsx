@@ -5,6 +5,8 @@ import {NavLink} from 'react-router-dom'
 import { useParams } from "react-router-dom";
 import {Repos} from '../components/repos'
 
+
+
 export const Profile = () => {
   const {getUser, getRepos, loading, user, repos} = useContext(GithubContext)
   const { id } = useParams()
@@ -50,6 +52,11 @@ const {
                  <p>{bio}</p>
                       </Fragment> }
 
+                      <button
+                        className = "btn btn-secondary mb-1"
+                        onClick = {() => {window.open(`https://github.com/${login}`)}}
+                      > Открыть профиль </button>
+
                  <ul>
                      {company && <li>
                        <strong>Компания: </strong> {company}
@@ -69,7 +76,10 @@ const {
           </div>
       </div>
 
-       <Repos repos ={repos} />
+       <Repos
+          repos ={repos}
+          login = {login}
+           />
     </Fragment>
   )
 }

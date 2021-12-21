@@ -66,12 +66,12 @@ export const GithubState = ({children}) => {
 
   const setLoading = () => dispatch({type: SET_LOADING})
 
-  const {user, users, repos, loading} = state
+  const {user, users, repos, loading, login} = state
 
   return (
     <GithubContext.Provider value={{
       setLoading, search, getUser, getRepos, clearUsers,
-      user, users, repos, loading
+      user, users, repos, loading, login
     }}>
       {children}
     </GithubContext.Provider>
