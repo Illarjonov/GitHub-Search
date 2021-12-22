@@ -6,7 +6,7 @@ export const About = () => {
       <div className="container">
         <h1 className="display-4">Информация</h1>
           <p className="lead">Используемые технологии: </p>
-              <div>HTML 5</div>
+              <div>JS</div>
               <div>React Hooks</div>
               <div> </div>
                 <hr/>
